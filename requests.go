@@ -1,5 +1,3 @@
-package main
-
 import (
 	"bytes"
 	"crypto/tls"
@@ -13,7 +11,7 @@ import (
 	"time"
 )
 
-const address := "https://kubernetes"
+const address string = "https://kubernetes"
 
 func MakeReqGet(url string) string {
 
