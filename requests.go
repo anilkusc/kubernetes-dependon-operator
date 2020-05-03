@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"crypto/tls"
 	"bufio"	
 )
 
