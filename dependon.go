@@ -1,7 +1,11 @@
-import (
-	"fmt"
+package main
+
+const (
+	deploment_uri   string = "https://kubernetes"
+	statefulset_uri string = "https://kubernetes"
 )
 
-func check_dependons() {
-	fmt.Println("test")
+func Trigger() {
+
+	//TODO:trigger if change of the pods changed(start,stop,etc)
 }

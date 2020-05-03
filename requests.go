@@ -11,8 +11,6 @@ import (
 
 const (
 	address string = "https://kubernetes"
-	deploment_uri string = "https://kubernetes"
-	statefulset_uri string = "https://kubernetes"
 )
 
 func MakeReqGet(url string) string {
