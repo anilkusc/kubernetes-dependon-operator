@@ -1,15 +1,13 @@
+package main
+
 import (
-	"bytes"
 	"crypto/tls"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"strconv"
-	"strings"
-	"time"
 )
+"time"
 
 const address string = "https://kubernetes"
 
