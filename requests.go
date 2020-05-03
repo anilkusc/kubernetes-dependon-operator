@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 )
-"time"
 
 const address string = "https://kubernetes"
 
