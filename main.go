@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
-	fmt.Println("hello")
+	fmt.Println(MakeReqGet("/api/v1/namespaces/default/pods/"))
 }
