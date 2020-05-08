@@ -10,13 +10,8 @@ import (
 	"net/http"
 )
 
-const (
-	address string = "https://kubernetes"
-)
-
 func MakeReqGet(url string) string {
 
-	url = address + url
 	token, err := ioutil.ReadFile("/run/secrets/kubernetes.io/serviceaccount/token")
 	if err != nil {
 		fmt.Print(err)
@@ -76,7 +71,6 @@ func MakeReqPatch(url string, data string) {
 
 	}
 
-	// Read body from response
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal("Error reading response. ", err)
@@ -86,8 +80,6 @@ func MakeReqPatch(url string, data string) {
 }
 
 func MakeReqStream(url string) {
-
-	url = address + url
 	token, err := ioutil.ReadFile("/run/secrets/kubernetes.io/serviceaccount/token")
 	if err != nil {
 		fmt.Print(err)

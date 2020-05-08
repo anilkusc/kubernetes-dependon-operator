@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/tidwall/gjson"
 )
 
 const (
@@ -12,28 +14,39 @@ const (
 
 func Trigger(json string) {
 
-	//TODO:trigger if change of the pods changed(start,stop,etc)
+	workload_type := gjson.Get(json, "object.kind").String()
+	if workload_type == "Deployment" {
+
+	} else if workload_type == "Statefulset" {
+
+	}
+
 }
 
-func stop_deployment(deployment_name string) {
+func Stop_deployment(deployment_name string) {
 	url := deployment_url + deployment_name
 	data := `{"spec":{"replicas":0}}`
 	MakeReqPatch(url, data)
 	fmt.Println("Deployment " + deployment_name + "has been stopped.")
 }
 
-func start_deployment(json string) {
-
-	//TODO:trigger if change of the pods changed(start,stop,etc)
+func Start_deployment(deployment_name string) {
+	url := deployment_url + deployment_name
+	data := `{"spec":{"replicas":1}}`
+	MakeReqPatch(url, data)
+	fmt.Println("Deployment " + deployment_name + "has been started.")
 }
-func stop_statefulset(statefulset_name string) {
+
+func Stop_statefulset(statefulset_name string) {
 	url := statefulset_url + statefulset_name
 	data := `{"spec":{"replicas":0}}`
 	MakeReqPatch(url, data)
 	fmt.Println("Statefulset " + statefulset_name + "has been stopped.")
 }
 
-func start_statefulset(json string) {
-
-	//TODO:trigger if change of the pods changed(start,stop,etc)
+func Start_statefulset(statefulset_name string) {
+	url := statefulset_url + statefulset_name
+	data := `{"spec":{"replicas":1}}`
+	MakeReqPatch(url, data)
+	fmt.Println("Statefulset " + statefulset_name + "has been started.")
 }
