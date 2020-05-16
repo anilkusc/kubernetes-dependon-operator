@@ -28,17 +28,8 @@ func Dependons_controller() {
 			break
 		}
 
-		/*
-			if new_dependons == dependons {
-				continue
-			} else {
-				fmt.Println("Dependons has been changed.")
-				break
-			}
-		*/
 	}
-	fmt.Println("Restarted all")
-	//	restart_all = true
+	restart_all = true
 }
 
 func Workload_controller() {

@@ -15,13 +15,13 @@ const (
 func main() {
 	namespace, _ := ioutil.ReadFile("/run/secrets/kubernetes.io/serviceaccount/namespace")
 	os.Setenv("NAMESPACE", string(namespace))
-	Dependons_controller()
-	/*	for {
-			restart_all = false
-			for restart_all == true {
 
-			}
-
+	for {
+		restart_all = false
+		for restart_all == true {
+			Dependons_controller()
 		}
-	*/
+
+	}
+
 }
