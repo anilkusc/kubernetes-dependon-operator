@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 )
+
+var restart_all bool = false
 
 /*
 const (
@@ -14,9 +15,13 @@ const (
 func main() {
 	namespace, _ := ioutil.ReadFile("/run/secrets/kubernetes.io/serviceaccount/namespace")
 	os.Setenv("NAMESPACE", string(namespace))
-	fmt.Println(Get_dependons())
-	//fmt.Println(MakeReqGet("/api/v1/namespaces/default/pods/"))
+	Dependons_controller()
+	/*	for {
+			restart_all = false
+			for restart_all == true {
 
-	//MakeReqStream("/api/v1/watch/namespaces/default/pods/management-748d988bf8-h8s6m")
+			}
 
+		}
+	*/
 }
