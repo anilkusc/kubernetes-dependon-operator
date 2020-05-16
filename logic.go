@@ -16,7 +16,6 @@ func Dependons_controller() {
 
 			for i, _ := range dependons {
 				if new_dependons[i] == dependons[i] {
-					fmt.Println("Continue")
 					continue
 				} else {
 					fmt.Println("Dependons has been changed.")

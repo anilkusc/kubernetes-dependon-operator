@@ -17,6 +17,7 @@ func main() {
 	os.Setenv("NAMESPACE", string(namespace))
 
 	for {
+
 		restart_all = false
 		for restart_all == true {
 			Dependons_controller()
