@@ -20,7 +20,8 @@ func main() {
 
 		restart_all = false
 		for restart_all == false {
-			Dependons_controller()
+			go Dependons_controller()
+			select {}
 		}
 
 	}
