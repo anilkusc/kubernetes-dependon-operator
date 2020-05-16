@@ -19,7 +19,7 @@ func main() {
 	for {
 
 		restart_all = false
-		for restart_all == true {
+		for restart_all == false {
 			Dependons_controller()
 		}
 
