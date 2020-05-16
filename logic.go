@@ -12,16 +12,30 @@ func Dependons_controller() {
 
 	for {
 		new_dependons = Get_dependons()
-		for i, _ := range dependons {
-			if new_dependons[i] == dependons[i] {
+		if len(new_dependons) == len(dependons) {
+
+			for i, _ := range dependons {
+				if new_dependons[i] == dependons[i] {
+					fmt.Println("Continue")
+					continue
+				} else {
+					fmt.Println("Dependons has been changed.")
+					break
+				}
+			}
+		} else {
+			fmt.Println("Dependons has been changed.")
+			break
+		}
+
+		/*
+			if new_dependons == dependons {
 				continue
 			} else {
 				fmt.Println("Dependons has been changed.")
 				break
 			}
-
-		}
-
+		*/
 	}
 	fmt.Println("Restarted all")
 	//	restart_all = true
