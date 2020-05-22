@@ -36,8 +36,8 @@ func Dependons_controller(json string) {
 func Workload_controller(json string) {
 	centralStatefulsets := gjson.Get(json, "object.spec.centrals.statefulsets")
 	centralDeployments := gjson.Get(json, "object.spec.centrals.deployments")
-	dependentStatefulsets := gjson.Get(json, "object.spec.dependons.statefulsets")
-	dependentDeployments := gjson.Get(json, "object.spec.dependons.deployments")
+	dependentStatefulsets := gjson.Get(json, "object.spec.dependents.statefulsets")
+	dependentDeployments := gjson.Get(json, "object.spec.dependents.deployments")
 	//dependonName := gjson.Get(json, "object.spec.dependons.deployments").String()
 	fmt.Println("Dependent Statefulsets: " + dependentStatefulsets.String())
 	fmt.Println("Dependent Deployments: " + dependentDeployments.String())
