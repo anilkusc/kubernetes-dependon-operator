@@ -6,5 +6,5 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /bin/dependon .
 FROM scratch
 WORKDIR /app
-COPY --from=BUILD /bin/app .
+COPY --from=BUILD /bin/dependon .
 ENTRYPOINT ["./dependon"]
