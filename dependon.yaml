@@ -1,0 +1,105 @@
+apiVersion: "apiextensions.k8s.io/v1beta1"
+kind: "CustomResourceDefinition"
+metadata:
+  name: dependons.anilkuscu.github.com
+spec:
+  group: anilkuscu.github.com
+  version: "v1alpha1"
+  scope: "Namespaced"
+  names:
+    plural: "dependons"
+    singular: "dependon"
+    kind: "DependOns"
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            centrals:
+              properties:
+                deployments:
+                  type: "array"
+                statefulsets:
+                  type: "array"
+            dependents:
+              properties:
+                deployments:
+                  type: "array"
+                statefulsets:
+                  type: "array"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dependon-crd
+rules:
+- apiGroups:
+  - anilkuscu.github.com
+  resources:
+  - Dependon
+  - Dependon/finalizers
+  verbs: [ get, list, create, update, delete, deletecollection, watch ]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dependon
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: dependon-role
+  namespace: default
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: dependon-role-binding
+  namespace: default
+roleRef:
+  kind: Role
+  name: dependon-role
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: dependon
+    namespace: default
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dependon-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dependon
+  template:
+    metadata:
+      labels:
+        app: dependon
+    spec:
+      serviceAccountName: dependon
+      containers:
+      - name: dependon
+        image: anilkuscu95/dependon
+---
+apiVersion: anilkuscu.github.com/v1alpha1
+kind: DependOns
+metadata:
+  name: mydepend
+spec:
+  centrals:
+    statefulsets:
+      - mysql
+    deployments:
+      - mydeployment
+  dependents:
+    statefulsets:
+      - redis
+    deployments:
+      - nginx
